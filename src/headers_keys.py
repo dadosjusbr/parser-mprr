@@ -20,6 +20,7 @@ HEADERS = {
       "Auxílio Moradia":6,
       "Ajuda de Custo":7,
       "Abono Pecuniário":8,
+      "Substituição de função":9,
     }
 
 }
