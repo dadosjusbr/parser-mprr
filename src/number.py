@@ -15,4 +15,3 @@ def format_value(element):
             element = 0.0
 
     return float(element)
-    

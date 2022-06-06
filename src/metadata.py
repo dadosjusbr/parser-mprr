@@ -1,5 +1,6 @@
 from coleta import coleta_pb2 as Coleta
 
+
 def catch(month, year):
     metadata = Coleta.Metadados()
     metadata.nao_requer_login = True
