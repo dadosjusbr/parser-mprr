@@ -26,7 +26,21 @@ else:
     OUTPUT_FOLDER = "/output"
 
 if "GIT_COMMIT" in os.environ:
-    CRAWLER_VERSION = os.environ["GIT_COMMIT"]
+    PARSER_VERSION = os.environ["GIT_COMMIT"]
+else:
+    PARSER_VERSION = "unspecified"
+
+# Pegando o ID do último commit do coletor
+headers = {
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+}
+response = requests.get(
+    'https://api.github.com/repos/dadosjusbr/coletor-mprr/commits', headers=headers)
+
+if response.status_code == 200:
+    response = response.json()
+    CRAWLER_VERSION = response[0]["sha"]
 else:
     CRAWLER_VERSION = "unspecified"
 
@@ -41,7 +55,7 @@ def parse_execution(data, file_names):
     coleta.repositorio_coletor = "https://github.com/dadosjusbr/coletor-mprr"
     coleta.versao_coletor = CRAWLER_VERSION
     coleta.repositorio_parser = "https://github.com/dadosjusbr/parser-mprr"
-    coleta.versao_parser = "unspecified"
+    coleta.versao_parser = PARSER_VERSION
     coleta.arquivos.extend(file_names)
     timestamp = Timestamp()
     timestamp.GetCurrentTime()
