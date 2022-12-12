@@ -7,6 +7,7 @@ from coleta import coleta_pb2 as Coleta, IDColeta
 from google.protobuf.timestamp_pb2 import Timestamp
 from google.protobuf import text_format
 from parser import parse
+import requests
 
 if "YEAR" in os.environ:
     YEAR = os.environ["YEAR"]
